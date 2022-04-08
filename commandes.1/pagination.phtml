@@ -1,0 +1,32 @@
+<h1 class="text-center">Liste des commandes</h1>
+
+<nav>
+    <ul class="pagination">
+        <?php for ($page = 1; $page <= $totalPages; $page++): ?>
+            <li class="page-item">
+                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+            </li>
+        <?php endfor ?>
+    </ul>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Numéro</th>
+            <th>Date de commande</th>
+            <th>Statut</th>
+            <th>Nom du client</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($orders as $order): ?>
+            <tr>
+                <td><a href="detail.php?order=<?= $order['orderNumber'] ?>"><?= $order['orderNumber'] ?></a></td>
+                <td><?= $order['orderDate'] ?></td>
+                <td><?= $order['status'] ?></td>
+                <td><?= $order['customerName'] ?></td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
