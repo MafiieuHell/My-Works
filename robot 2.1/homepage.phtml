@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usine de robot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1 class="text-center">Usine de robots</h1>
+    
+    <main class="container">
+        <section>
+            <h2>Création du robot</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="robotname">Nom du robot</label>
+                    <input name="robotname" id="robotname" type="text" class="form-control" placeholder="Laisser vide pour générer un nom aléatoire">
+                </div>
+                
+                <div class="form-group">
+                    <label for="morality">Moralité</label>
+                    <select name="morality" id="morality" class="form-control">
+                        <option value="good">Gentil</option>
+                        <option value="evil">Méchant</option>
+                        <option value="random">Au hasard</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary">Enregistrer</button>
+            </form>
+        </section>
+        
+        <hr>
+        
+        <!-- Section affichée que si le formulaire a été soumis -->
+        <?php if (! empty($_POST)): ?>
+            <section class="mt-3">
+                <h2>Informations du robot</h2>
+                <p>Salutations humain, mon nom est <?= $robotName ?></p>
+                <p>Mon nom à l'envers est <?= strrev($robotName) ?></p>
+                
+                <p>Nous sommes le <?= $date ?>, il est <?= $time ?>.</p>
+                
+                <p>
+                    J'ai choisi le nombre <?= $randomNumber ?>.
+                    <?php if (isOdd($randomNumber)): ?>
+                        C'est un nombre impair
+                    <?php else: ?>
+                        C'est un nombre pair
+                    <?php endif ?>
+                </p>
+                
+                <?php if (isEvil($morality)): ?>
+                    <p class="text-danger font-weight-bold">Extermination ! Extermination !</p>
+                <?php else: ?>
+                    <p>Voulez-vous un café ?</p>
+                <?php endif ?>
+            </section>
+        <?php endif ?>
+    </main>
+</body>
+</html>
